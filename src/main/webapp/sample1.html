@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:ng="http://angularjs.org" >
+<head>
+    <title></title>
+    <meta charset="utf-8">
+    <!--[if lte IE 8]>
+    <script src="lib/angular/json2.js"></script>
+    <![endif]-->
+    <script src="lib/jquery/jquery-1.10.2.min.js" type="text/javascript"></script>
+    <script src="lib/angular/angular-1.2.4.js" type="text/javascript"></script>
+    <script src="js/sample1.js" type="text/javascript"></script>
+</head>
+<body ng-app  id="ng-app">
+<div ng-controller="PhoneListCtrl">
+    <table>
+        <thead>
+        <tr>
+            <th>类型</th><th>日期</th><th>人数</th><th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="xfitem in xflist">
+            <td>{{xfitem.type}}</td>
+            <td>{{xfitem.date}}</td>
+            <td>{{xfitem.amount}}</td>
+            <td><button>删除</button><button>修改</button></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>
