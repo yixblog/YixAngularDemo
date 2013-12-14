@@ -1,0 +1,36 @@
+.main{
+    width: 600px;
+    float: left;
+    position: relative;
+}
+
+.report{
+    width: 100%;
+    position: relative;
+    float: left;
+}
+
+.report .highlight{
+    color: #ff0000;
+    font-size: 18px;
+}
+
+table{
+    float: left;
+    width: 100%;
+}
+table th{
+    background: #f0f0f0;
+}
+
+table th.green{
+    background: #00ff00;
+}
+
+#form-table input.ng-invalid.ng-dirty {
+    background-color: #FA787E;
+}
+
+#form-table input.ng-valid.ng-dirty {
+    background-color: #78FA89;
+}
