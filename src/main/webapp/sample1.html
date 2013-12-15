@@ -23,20 +23,20 @@
     <table>
         <thead>
         <tr>
-            <th ng-click="sortBy('type')" ng-class="{green:orderColumn=='type'}">类型</th>
-            <th ng-click="sortBy('date')" ng-class="{green:orderColumn=='date'}">日期</th>
-            <th ng-click="sortBy('amount')" ng-class="{green:orderColumn=='amount'}">人数</th>
+            <th ng-click="sortBy('type')" ng-class="{green:orderColumn=='type'}">类型{{sortSymbol('type')}}</th>
+            <th ng-click="sortBy('date')" ng-class="{green:orderColumn=='date'}">日期{{sortSymbol('date')}}</th>
+            <th ng-click="sortBy('amount')" ng-class="{green:orderColumn=='amount'}">人数{{sortSymbol('amount')}}</th>
             <th>操作</th>
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="xfitem in xflist|orderBy:orderColumn">
+        <tr ng-repeat="xfitem in xflist|orderBy:orderColumn:orderReverce">
             <td>{{xfitem.type}}</td>
             <td>{{xfitem.date}}</td>
             <td>{{xfitem.amount}}</td>
             <td>
                 <button ng-click="deleteItem($index,xfitem)">删除</button>
-                <button>修改</button>
+                <button ng-click="editItem($index,xfitem)">修改</button>
             </td>
         </tr>
         </tbody>
@@ -46,16 +46,16 @@
         <table id="form-table">
             <tbody>
             <tr>
-                <td><input ng-model="formVal.type" placeholder="类型" type="text" required></td>
+                <td><input ng-model="formVal.type" placeholder="类型" type="text" required><input type="hidden" ng-model="formVal.id" value=""></td>
             </tr>
             <tr>
                 <td><input ng-model="formVal.date" placeholder="来访日期" type="text" ng-pattern="/^\d{4}-\d{2}-\d{2}$/" required></td>
             </tr>
             <tr>
-                <td><input ng-model="formVal.amount" placeholder="数量" type="text" ng-pattern="/^\d+$/" required></td>
+                <td><input ng-model="formVal.amount" placeholder="人数" type="text" ng-pattern="/^\d+$/" required></td>
             </tr>
             <tr>
-                <td><button ng-click="addItem(formVal)" ng-disabled="form1.$invalid">ADD</button></td>
+                <td><button ng-click="addOrEditItem(formVal)" ng-disabled="form1.$invalid">{{formVal.id!=""&&formVal.id!=null?'EDIT':'ADD'}}</button></td>
             </tr>
             </tbody>
         </table>
