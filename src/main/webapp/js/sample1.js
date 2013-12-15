@@ -1,11 +1,11 @@
 /**
  * Created by yixian on 13-12-11.
  */
-angular.module('ie7support', []).config(function ($sceProvider) {
+var app = angular.module('ie7support', []).config(function ($sceProvider) {
     // Completely disable SCE to support IE7.
     $sceProvider.enabled(false);
 });
-function PhoneListCtrl($scope, $http) {
+app.controller('XFListCtrl', function ($scope, $http) {
     $http.post("data/xfdata.json", {}).success(function (data) {
         console.log(data);
         $scope.xflist = data.xflist;
@@ -14,7 +14,7 @@ function PhoneListCtrl($scope, $http) {
     $scope.totalAmount = function () {
         var total = 0;
         angular.forEach($scope.xflist, function (item) {
-            total += item.amount;
+            total += parseInt(item.amount);
         })
         return total;
     }
@@ -50,15 +50,15 @@ function PhoneListCtrl($scope, $http) {
         console.log($scope.orderColumn);
         if ($scope.orderColumn == key) {
             $scope.orderReverce = !$scope.orderReverce;
-        }else{
+        } else {
             $scope.orderReverce = false;
         }
         $scope.orderColumn = key;
     }
 
     $scope.editItem = function (index, item) {
-        console.log(index);
+        $scope.formVal = {id: item.id, type: item.type, date: item.date, amount: item.amount};
     }
-}
+})
 
 

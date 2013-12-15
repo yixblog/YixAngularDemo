@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:ng="http://angularjs.org">
 <head>
-    <title></title>
+    <title>CRUD Sample</title>
     <meta charset="utf-8">
     <!--[if lte IE 8]>
     <script src="lib/ie/json2.js"></script>
@@ -14,8 +14,8 @@
     <link rel="stylesheet" href="lib/jquery-ui/css/flat/jquery-ui-1.10.3.custom.min.css" type="text/css">
     <link href="css/main.css" rel="stylesheet" type="text/css">
 </head>
-<body ng-app id="ng-app">
-<div ng-controller="PhoneListCtrl" class="main">
+<body ng-app="ie7support" id="ng-app">
+<div ng-controller="XFListCtrl" class="main">
     <div class="report">信访总人数：<span class="highlight">{{totalAmount()}}</span>
 
         <div class="charts"></div>
@@ -55,7 +55,10 @@
                 <td><input ng-model="formVal.amount" placeholder="人数" type="text" ng-pattern="/^\d+$/" required></td>
             </tr>
             <tr>
-                <td><button ng-click="addOrEditItem(formVal)" ng-disabled="form1.$invalid">{{formVal.id!=""&&formVal.id!=null?'EDIT':'ADD'}}</button></td>
+                <td>
+                    <button ng-click="addOrEditItem(formVal)" ng-disabled="form1.$invalid">{{formVal.id!=""&&formVal.id!=null?'EDIT':'ADD'}}</button>
+                    <button ng-click="formVal=null">CANCEL</button>
+                </td>
             </tr>
             </tbody>
         </table>
