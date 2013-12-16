@@ -1,11 +1,11 @@
 .main{
-    width: 600px;
+    width: 100%;
     float: left;
     position: relative;
 }
 
 .report{
-    width: 100%;
+    width: 600px;
     position: relative;
     float: left;
 }
@@ -17,7 +17,8 @@
 
 table{
     float: left;
-    width: 100%;
+    width: 600px;
+    clear: both;
 }
 table th{
     background: #f0f0f0;
@@ -33,4 +34,11 @@ table th.green{
 
 #form-table input.ng-valid.ng-dirty {
     background-color: #78FA89;
+}
+
+.chart{
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 400px;
 }
