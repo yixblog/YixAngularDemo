@@ -6,7 +6,7 @@ var app = angular.module('ie7support', []).config(function ($sceProvider) {
     $sceProvider.enabled(false);
 });
 
-app.controller('XFListCtrl', function ($scope, $http,$log) {
+app.controller('XFListCtrl', function ($scope, $http, $log) {
     $http.post("data/xfdata.json", {}).success(function (data) {
         $log.debug(data);
         $scope.xflist = data.xflist;
@@ -23,7 +23,7 @@ app.controller('XFListCtrl', function ($scope, $http,$log) {
         $log.info('add item');
         $log.info(item);
         item.amount = parseInt(item.amount);
-        if (item.id!=null && item.id != "") {
+        if (item.id != null && item.id != "") {
             angular.forEach($scope.xflist, function (xfitem) {
                 if (xfitem.id == item.id) {
                     xfitem.type = item.type;
@@ -32,17 +32,17 @@ app.controller('XFListCtrl', function ($scope, $http,$log) {
                 }
             })
         } else {
-            item.id=generateId();
+            item.id = generateId();
             $scope.xflist.push(item);
         }
     };
 
-    function generateId(){
-        var maxId= 0;
-        $($scope.xflist).each(function(){
-            maxId = Math.max(this.id,maxId);
+    function generateId() {
+        var maxId = 0;
+        $($scope.xflist).each(function () {
+            maxId = Math.max(this.id, maxId);
         });
-        return maxId+1;
+        return maxId + 1;
     }
 
     $scope.deleteItem = function (index, item) {
@@ -134,10 +134,25 @@ app.directive('ngHighcharts', function ($log) {
             $log.debug('sum elements');
             $log.debug(sumedList);
             buildHighcharts(element, sumedList);
-        },true)
+        }, true)
     }
 
     return {
         link: link
     }
 });
+
+app.directive('datepicker', function () {
+    return{
+        restrict: 'A',//Attribute Only
+        link: function (scope, element, attrs, ngModelCtrl) {
+            $(function () {
+                element.attr('readonly','readonly');
+                element.datepicker({
+                    dateFormat: 'yy-mm-dd'
+                });
+            })
+        }
+    }
+});
+
